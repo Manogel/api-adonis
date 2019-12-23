@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const File = use('App/Models/File')
 const Helpers = use('Helpers')
@@ -21,8 +21,9 @@ class FileController {
     }
   }
 
-  async store ({ request, response }) {
+  async store ({ request, response, auth }) {
     try {
+      const usuario = auth.user.id
       if (!request.file('file')) return
 
       const upload = request.file('file', { size: '2mb' })
